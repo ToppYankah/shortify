@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL SHORTENER</title>
+    <link rel="stylesheet" href="/public/assets/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="info-side">
+        <div class="inner">
+          <img
+            src="/public/assets/img/logo_small.png"
+            alt=""
+            width="200px"
+            hight="200px"
+          />
+          <div class="text">
+            <h2>How To Use Shortify</h2>
+            <p>
+              Shortify is a server that helps to reduce the length of a long url
+              which might be too long to remember. It also stores your URL for
+              future reference. <br />
+              To be a premium user, there is a defined number of visits to the
+              URL. When the number of visits by users reaches the maximum, you
+              will be asked to sign up for a premium account.
+            </p>
+          </div>
+          <div class="premium-link">
+            <p>Start as premium user</p>
+            <a href="#">Register Premium</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-side">
+        <div class="inner">
+          <h2>Enter URL to shorten:</h2>
+          <form action="/api/create" method="post">
+            <div class="input-box">
+              <input
+                type="text"
+                name="mainUrl"
+                placeholder="eg: https://longurl.servername.com/add/5a4d5a68d1f2af"
+              />
+              <div class="border-line"></div>
+            </div>
+            <button type="submit">Generate Short URL</button>
+          </form>
+          <div
+            class="result-screen <%= result.shortUrl !== '' ? 'active' : '' %>"
+          >
+            <p>Result Screen</p>
+            <input disabled id="urlSpace" value="<%= result.shortUrl %>" />
+            <small><a id="copier" href="#">copy to clipboard</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+    const copyUrlButton = document.querySelector("#copier");
+    const generatedUrl = document.querySelector("#urlSpace");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (form.querySelector("input").value.length > 0) {
+        form.submit();
+      }
+    });
+
+    copyUrlButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (generatedUrl.value.length > 1) {
+        generatedUrl.select();
+        document.execCommand("copy");
+        alert("Generated Url has been copied successfully: " + generatedUrl);
+      } else {
+        alert("Generate URL before you can copy");
+      }
+    });
+  </script>
+</html>
