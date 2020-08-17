@@ -56,9 +56,14 @@
           </div>
         </div>
         <div class="error-box <%= result.error && 'active' %>">
-          <span>Shortify Error</span>
+          <span>Shortify Prompt</span>
           <label class="close" style="color: #555; cursor: pointer;">x</label>
           <p><%= result.error ? result.error : "" %></p>
+          <div class="url-link">
+            <a href="<%= result.existingUrl %>">
+              <%= result.existingUrl ? result.existingUrl : "" %>
+            </a>
+          </div>
         </div>
       </div>
     </div>

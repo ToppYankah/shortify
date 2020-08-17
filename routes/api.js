@@ -24,7 +24,9 @@ router.post("/create", async (req, res) => {
         res.redirect("/?error=Error generating url. Try again.");
       }
     }
-    res.redirect("/?error=The url you entered already exist");
+    res.redirect(
+      `/?error=The url you entered already exist&url=${urlExists.shortUrl}`
+    );
   }
 
   res.redirect("/?error=Please enter a valid url");

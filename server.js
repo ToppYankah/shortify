@@ -38,8 +38,9 @@ app.get("/:id", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
+  const existingUrl = req.query.url ? req.query.url : "";
   const error = req.query.error ? req.query.error : "";
-  res.render("index", { result: { shortUrl: "", error } });
+  res.render("index", { result: { shortUrl: "", error, existingUrl } });
 });
 
 const port = process.env.PORT || 5000;

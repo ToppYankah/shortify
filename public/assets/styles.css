@@ -315,6 +315,18 @@ input::placeholder {
   font-size: 12px;
 }
 
+.url-link {
+  padding: 10px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  background: rgba(137, 11, 196, 0.2);
+  text-align: center;
+}
+
+.url-link a {
+  color: var(--color-2);
+}
+
 .error-box p {
   padding: 10px 0;
 }
