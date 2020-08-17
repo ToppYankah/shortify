@@ -15,7 +15,7 @@
   --line-height: 25px;
   --font-size: 16px;
   --mute-white: #ffffffaa;
-  --box-shadow: 0 0 10px #94ff86;
+  --box-shadow: 0 0 5px #00000041;
 }
 
 * {
@@ -261,6 +261,62 @@ input::placeholder {
 
 .result-screen.active * {
   color: var(--active-text-color);
+}
+
+.error-box {
+  position: fixed;
+  right: -150%;
+  bottom: 20px;
+  width: 300px;
+  padding: var(--body-padding);
+  box-shadow: var(--box-shadow);
+  z-index: 100;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  -moz-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  -ms-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  -o-transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.error-box.active {
+  right: 30px;
+  animation: show-up 1s;
+  -webkit-animation: show-up 1s;
+}
+
+@keyframes show-up {
+  0% {
+    right: -150%;
+  }
+}
+
+.error-box .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 18px;
+}
+
+.error-box span {
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  background: red;
+  color: #fff;
+  font-size: 12px;
+}
+
+.error-box p {
+  padding: 10px 0;
 }
 
 @media (max-width: 600px) {

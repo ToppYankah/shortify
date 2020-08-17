@@ -41,7 +41,7 @@
               <input
                 type="text"
                 name="mainUrl"
-                placeholder="eg: https://longurl.servername.com/add/5a4d5a68d1f2af"
+                placeholder="Enter long url here..."
               />
               <div class="border-line"></div>
             </div>
@@ -55,6 +55,11 @@
             <small><a id="copier" href="#">copy to clipboard</a></small>
           </div>
         </div>
+        <div class="error-box <%= result.error && 'active' %>">
+          <span>Shortify Error</span>
+          <label class="close" style="color: #555; cursor: pointer;">x</label>
+          <p><%= result.error ? result.error : "" %></p>
+        </div>
       </div>
     </div>
   </body>
@@ -62,6 +67,7 @@
     const form = document.querySelector("form");
     const copyUrlButton = document.querySelector("#copier");
     const generatedUrl = document.querySelector("#urlSpace");
+    const closeErrorBtn = document.querySelector(".close");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -79,6 +85,10 @@
       } else {
         alert("Generate URL before you can copy");
       }
+    });
+
+    closeErrorBtn.addEventListener("click", (e) => {
+      e.target.parentElement.classList.remove("active");
     });
   </script>
 </html>
