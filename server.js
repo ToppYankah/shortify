@@ -19,10 +19,14 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 app.get("/visit/:urlCode", async (req, res) => {
   const foundUrl = await UrlRequest.findOne({ urlCode: req.params.urlCode });
 
-  if (foundUrl) {
+  if (foundUrl && foundUrl.visits > 0) {
+    foundUrl.visits--;
+    await foundUrl.save();
     res.redirect(foundUrl.longUrl);
   }
-  res.redirect("/");
+  res.redirect(
+    "/?error=You have reach your maximum visit. Register premium to enjoy more"
+  );
 });
 
 app.get("/:id", async (req, res) => {
@@ -33,7 +37,7 @@ app.get("/:id", async (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   const error = req.query.error ? req.query.error : "";
   res.render("index", { result: { shortUrl: "", error } });
 });

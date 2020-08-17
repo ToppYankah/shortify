@@ -6,19 +6,21 @@ dotenv.config();
 
 router.post("/create", async (req, res) => {
   if (req.body.mainUrl !== "") {
-    const urlExists = UrlRequest.findOne({ longUrl: req.body.mainUrl });
-    if (urlExists) {
+    const urlExists = await UrlRequest.findOne({ longUrl: req.body.mainUrl });
+
+    if (!urlExists) {
       const urlCode = generateRandomCode();
+
       let newRequest = new UrlRequest({
         longUrl: req.body.mainUrl,
         shortUrl: process.env.BASE_URL + urlCode,
         urlCode,
       });
+
       try {
         newRequest = await newRequest.save();
         res.redirect(`/${newRequest._id}`);
       } catch (err) {
-        console.log("from Post", err.message);
         res.redirect("/?error=Error generating url. Try again.");
       }
     }
