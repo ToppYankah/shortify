@@ -26,4 +26,6 @@ app.get("/", (req, res) => {
   res.render("index", { result: { shortUrl: "" } });
 });
 
-app.listen(5000);
+const port = process.env.PORT || 5000;
+
+app.listen(port);
