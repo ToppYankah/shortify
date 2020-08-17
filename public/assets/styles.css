@@ -342,6 +342,10 @@ input::placeholder {
     margin-bottom: 50px;
   }
 
+  .page .form-side {
+    min-height: 100vh;
+  }
+
   .form-side .inner {
     width: 100%;
     height: 100%;
